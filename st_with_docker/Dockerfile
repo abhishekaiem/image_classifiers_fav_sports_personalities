@@ -15,14 +15,16 @@ WORKDIR /app
 # COPY ../export.pkl /app
 COPY . /app
 
-# pip install
+# pip install  --no-cache-dir 
 RUN pip --no-cache-dir install -r /app/requirements.txt
 
 # Make a port available to the outside of this container
 EXPOSE 8501
 
 # ENTRYPOINT allows us to specify the default executable
-ENTRYPOINT ["streamlit", "run"]
+# ENTRYPOINT ["streamlit", "run"]
 
 # CMD sets default arguments to executable which may be overwritten when using docker
-CMD ["app.py"]
+# CMD ["app.py"]
+
+CMD streamlit run app.py --server.port $PORT
